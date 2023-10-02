@@ -306,14 +306,24 @@ The project is configured to connect to a MySQL database with the following prop
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/Employee
-spring.datasource.username=root
-spring.datasource.password=9892321787@As
+spring.datasource.username=Your_Username
+spring.datasource.password=Your_Password
 spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.show_sql=true
 spring.jpa.properties.hibernate.use_sql_comments=true
 spring.jpa.properties.hibernate.format_sql=true
 ```
+```sql
+mysql -u root -p;
+
+GRANT ALL PRIVILEGES ON Employee.* TO 'root'@'localhost';
+
+FLUSH PRIVILEGES;
+
+CREATE DATABASE Employee;
+```
+
 
 Make sure your MySQL database is running, and the credentials match those provided in the configuration.
 
