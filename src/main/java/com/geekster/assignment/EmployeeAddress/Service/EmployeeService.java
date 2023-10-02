@@ -27,8 +27,14 @@ public class EmployeeService {
         return optionalEmployee.orElse(null);
     }
 
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public String createEmployee(Employee employee) {
+         employeeRepository.save(employee);
+         return "Employee Added";
+    }
+
+    public String createListOfEmployees(List<Employee> employeeList) {
+         employeeRepository.saveAll(employeeList);
+         return "Added list of employees";
     }
 
     public Employee updateEmployee(Long id, Employee updatedEmployee) {
@@ -44,7 +50,9 @@ public class EmployeeService {
         }
     }
 
-    public void deleteEmployee(Long id) {
+
+    public String  deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
+        return "Employee is removed!";
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/addresses")
+@RequestMapping("/address")
 public class AddressController {
 
     @Autowired
@@ -24,19 +24,24 @@ public class AddressController {
         return addressService.getAddressById(id);
     }
 
-    @PostMapping
-    public Address createAddress(@RequestBody Address address) {
+    @PostMapping("address")
+    public String createAddress(@RequestBody Address address) {
         return addressService.createAddress(address);
     }
 
+    @PostMapping("addresses")
+    public String createListOfAddress(@RequestBody List<Address> addressList){
+        return addressService.createListOfAddresses(addressList);
+    }
+
     @PutMapping("/{id}")
-    public Address updateAddress(@PathVariable Long id, @RequestBody Address address) {
+    public String updateAddress(@PathVariable Long id, @RequestBody Address address) {
         return addressService.updateAddress(id, address);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAddress(@PathVariable Long id) {
-        addressService.deleteAddress(id);
+    public String deleteAddressById(@PathVariable Long id) {
+      return   addressService.deleteAddressById(id);
     }
 }
 

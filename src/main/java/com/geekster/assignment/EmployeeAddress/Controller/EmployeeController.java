@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
@@ -24,9 +24,14 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
-    @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
+    @PostMapping("employee")
+    public String createEmployee(@RequestBody Employee employee) {
         return employeeService.createEmployee(employee);
+    }
+
+    @PostMapping("employees")
+    public String createListOfEmployees(@RequestBody List<Employee> employeeList) {
+        return employeeService.createListOfEmployees(employeeList);
     }
 
     @PutMapping("/{id}")
@@ -35,7 +40,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
+    public String deleteEmployeeById(@PathVariable Long id) {
+      return   employeeService.deleteEmployeeById(id);
     }
 }

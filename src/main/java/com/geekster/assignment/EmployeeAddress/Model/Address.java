@@ -18,6 +18,6 @@ public class Address {
     private String city;
     private String state;
 
-    @Column(name = "zipcode")
+  //  @Column(name = "zipcode")
     private String zipCode;
 }

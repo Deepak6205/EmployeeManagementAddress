@@ -27,11 +27,17 @@ public class AddressService {
         return optionalAddress.orElse(null);
     }
 
-    public Address createAddress(Address address) {
-        return addressRepository.save(address);
+    public String createAddress(Address address) {
+        addressRepository.save(address);
+        return "Address is Added";
     }
 
-    public Address updateAddress(Long id, Address updatedAddress) {
+    public String createListOfAddresses(List<Address> addressList){
+        addressRepository.saveAll(addressList);
+        return "Addresses are Added";
+    }
+
+    public String updateAddress(Long id, Address updatedAddress) {
         Optional<Address> optionalAddress = addressRepository.findById(id);
         if (optionalAddress.isPresent()) {
             Address existingAddress = optionalAddress.get();
@@ -39,13 +45,15 @@ public class AddressService {
             existingAddress.setCity(updatedAddress.getCity());
             existingAddress.setState(updatedAddress.getState());
             existingAddress.setZipCode(updatedAddress.getZipCode());
-            return addressRepository.save(existingAddress);
+             addressRepository.save(existingAddress);
+             return "Address is Updated";
         } else {
             return null; // Address with the given ID not found
         }
     }
 
-    public void deleteAddress(Long id) {
+    public String deleteAddressById(Long id) {
         addressRepository.deleteById(id);
+        return "Address Deleted !";
     }
 }
